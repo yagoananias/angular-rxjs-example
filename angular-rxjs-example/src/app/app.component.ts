@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +43,13 @@ export class AppComponent implements OnInit {
       }
     })
   }
+
+  minhaObservable(nome : string) : Observable<string> {
+    return new Observable(subscriber => {
+      subscriber.next('olar ;)');
+    });
+  }
+
   ngOnInit(): void {
     this.minhaPromise('Yaguimm')
     .then(result => {
@@ -49,5 +57,9 @@ export class AppComponent implements OnInit {
     }).catch((erro => {
       console.log(erro)
     }))
+
+    this.minhaObservable('').subscribe(result => {
+      console.log(result)
+    })
   }
 }
